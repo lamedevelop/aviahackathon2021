@@ -3,18 +3,18 @@ import requests
 from configs.yandex import *
 
 
-class SchedulerFactory:
+class HandlerFactory:
 
     @staticmethod
-    def getSVOScheduler():
-        return StationScheduler(
+    def getSVOHandler():
+        return StationHandler(
             api_key,
             station,
             system
         )
 
 
-class StationScheduler:
+class StationHandler:
 
     api_key: str
     station: str

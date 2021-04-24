@@ -1,0 +1,59 @@
+Screen:
+    name: 'body'
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, 0.05
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    NavigationLayout:
+        x: toolbar.height
+        ScreenManager:
+            id: screen_manager
+            Screen:
+                orientation: 'horizontal'
+                name: 'server'
+                FloatLayout:
+                    MDToolbar:
+                        id: toolbar
+                        md_bg_color: 1, 1, 1, 0
+                        specific_text_color: 0, 0, 0, 0.7
+                        elevation: 0
+                        size_hint: 1, 0.1
+                        height: dp(70)
+                        title: 'SVO Guide'
+                        right_action_items: [['menu', lambda x: app.go_to_menu(screen_manager)]]
+                        pos_hint: {"x":0, "top":1}
+                    RelativeLayout:
+                        size_hint: None, None
+                        pos_hint: {"x": 0.45, "y": 0.5}
+                        opacity: .7
+                        Image:
+                            id: cool_img
+                            source: "B-3.jpg"
+                            size_hint: None, None
+                    MDRectangleFlatButton:
+                        text: "+"
+                        on_release: app.plus()
+                        size_hint: 0.1, 0.1
+                        pos_hint: {"x":.9, "y":.5}
+                    MDRectangleFlatButton:
+                        text: "-"
+                        on_release: app.minus()
+                        size_hint: 0.1, 0.1
+                        pos_hint: {"x":.9, "y":.4}
+            Screen:
+                name: 'settings'
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        id: toolbar
+                        md_bg_color: 1, 1, 1, 0
+                        specific_text_color: 0, 0, 0, 0.7
+                        elevation: 0
+                        size_hint_y: None
+                        height: dp(70)
+                        title: 'Settings'
+                        left_action_items: [['arrow-left', lambda x: app.go_to_main(screen_manager)]]
+                    Image:
+                        source: "B-3.jpg"

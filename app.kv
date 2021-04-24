@@ -6,13 +6,24 @@ Screen:
         Rectangle:
             pos: self.pos
             size: self.size
+
+    MDBottomNavigation:
+        MDBottomNavigationItem:
+            name: "map"
+            text: 'map'
+            on_tab_release: app.go_to_map(screen_manager)
+        MDBottomNavigationItem:
+            name: "route"
+            text: 'route'
+            on_tab_release: app.go_to_route(screen_manager)
+
     NavigationLayout:
         x: toolbar.height
         ScreenManager:
             id: screen_manager
             Screen:
                 orientation: 'horizontal'
-                name: 'server'
+                name: 'map'
                 FloatLayout:
                     MDToolbar:
                         id: toolbar
@@ -22,7 +33,7 @@ Screen:
                         size_hint: 1, 0.1
                         height: dp(70)
                         title: 'SVO Guide'
-                        right_action_items: [['menu', lambda x: app.go_to_menu(screen_manager)]]
+                        right_action_items: [['menu', lambda x: app.go_to_profile(screen_manager)]]
                         pos_hint: {"x":0, "top":1}
                     RelativeLayout:
                         size_hint: None, None
@@ -42,8 +53,23 @@ Screen:
                         on_release: app.minus()
                         size_hint: 0.1, 0.1
                         pos_hint: {"x":.9, "y":.4}
+
             Screen:
-                name: 'settings'
+                name: "route"
+                orientation: 'vertical'
+                FloatLayout:
+                    MDToolbar:
+                        id: toolbar
+                        md_bg_color: 1, 1, 1, 0
+                        specific_text_color: 0, 0, 0, 0.7
+                        elevation: 0
+                        size_hint: 1, 0.1
+                        height: dp(70)
+                        title: 'SVO Route'
+                        pos_hint: {"x":0, "top":1}
+
+            Screen:
+                name: 'profile'
                 BoxLayout:
                     orientation: 'vertical'
                     MDToolbar:
@@ -54,6 +80,23 @@ Screen:
                         size_hint_y: None
                         height: dp(70)
                         title: 'Settings'
-                        left_action_items: [['arrow-left', lambda x: app.go_to_main(screen_manager)]]
-                    Image:
-                        source: "B-3.jpg"
+                        left_action_items: [['arrow-left', lambda x: app.go_to_map(screen_manager)]]
+                    BoxLayout:
+                        orientation: 'vertical'
+                        pos_hint: {"x":0, "y":1}
+                        Button:
+                            text: "MDTEXTBUTTON"
+                            custom_color: 0, 1, 0, 1
+                            on_release: app.go_to_main(screen_manager)
+                        Button:
+                            text: "MDTEXTBUTTON"
+                            custom_color: 0, 1, 0, 1
+                            on_release: app.go_to_main(screen_manager)
+                        Button:
+                            text: "MDTEXTBUTTON"
+                            custom_color: 0, 1, 0, 1
+                            on_release: app.go_to_main(screen_manager)
+                        Button:
+                            text: "MDTEXTBUTTON"
+                            custom_color: 0, 1, 0, 1
+                            on_release: app.go_to_main(screen_manager)

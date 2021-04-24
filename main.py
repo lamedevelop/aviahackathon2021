@@ -33,5 +33,8 @@ class MyApp(MDApp):
         self.root.ids['cool_img'].pos[0] += 50
         self.root.ids['cool_img'].pos[1] += 50
 
+    def run_ticket_scanner(self):
+        pass
+
 
 MyApp().run()

@@ -1,3 +1,5 @@
+#:import webbrowser webbrowser
+
 Screen:
     name: 'body'
     canvas.before:
@@ -84,19 +86,13 @@ Screen:
                     BoxLayout:
                         orientation: 'vertical'
                         pos_hint: {"x":0, "y":1}
+                        MDLabel:
+                            text: "Scan your ticket to get info about your gate and departure time:"
                         Button:
-                            text: "MDTEXTBUTTON"
-                            custom_color: 0, 1, 0, 1
-                            on_release: app.go_to_main(screen_manager)
+                            text: "Ticket Scanner"
+                            on_release: app.run_ticket_scanner()
+                        MDLabel:
+                            text: "Augment reality guide will entertain your flight waiting and will help to find interesting places easily:"
                         Button:
-                            text: "MDTEXTBUTTON"
-                            custom_color: 0, 1, 0, 1
-                            on_release: app.go_to_main(screen_manager)
-                        Button:
-                            text: "MDTEXTBUTTON"
-                            custom_color: 0, 1, 0, 1
-                            on_release: app.go_to_main(screen_manager)
-                        Button:
-                            text: "MDTEXTBUTTON"
-                            custom_color: 0, 1, 0, 1
-                            on_release: app.go_to_main(screen_manager)
+                            text: 'AR Guide'
+                            on_release: webbrowser.open_new('https://192.168.1.185:4000')

@@ -30,5 +30,4 @@ class MyApp(MDApp):
         self.root.ids['cool_img'].pos[1] += 50
 
 
-if __name__=='__main':
-    MyApp().run()
+MyApp().run()

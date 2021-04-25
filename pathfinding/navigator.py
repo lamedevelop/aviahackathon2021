@@ -86,6 +86,16 @@ class Navigator:
 
         return path, path_info
 
+    def path_info_to_str(self, path_info, path_len):
+        info = ''
 
-if __name__ == '__main__':
-    Navigator().build_path()
+        total_time = 0
+
+        for i in path_info:
+            info += i['info'] + ' ' + i['text'] + '\n'
+            total_time += int(i['time'])
+            info += i['warning'] + '\n\n'
+        total_time += path_len * 5
+        info += 'Общее время ~{} минут.'.format(total_time // 60)
+
+        return info

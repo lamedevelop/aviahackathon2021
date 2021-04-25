@@ -45,10 +45,10 @@ Screen:
                         height: dp(70)
                         TextInput:
                             id: start_point
-                            text: "start"
+                            text: "Паркинг"
                         TextInput:
                             id: end_point
-                            text: "end"
+                            text: "Duty-Free"
                         Button:
                             text: "Run"
                             on_release: app.build_path()
@@ -83,19 +83,20 @@ Screen:
 
             Screen:
                 name: "route"
-                BoxLayout:
-                    orientation: 'vertical'
-                    MDToolbar:
-                        id: toolbar
-                        md_bg_color: 1, 1, 1, 0
-                        specific_text_color: 0, 0, 0, 0.7
-                        elevation: 0
-                        size_hint: 1, 0.1
-                        height: dp(70)
-                        title: 'SVO Route'
-                        pos_hint: {"x":0, "top":1}
-                    Label:
-                        id: route_label
+                MDToolbar:
+                    id: toolbar
+                    md_bg_color: 1, 1, 1, 0
+                    specific_text_color: 0, 0, 0, 0.7
+                    elevation: 0
+                    size_hint_y: None
+                    height: dp(70)
+                    title: 'SVO Route'
+                    pos_hint: {"x":0, "top":1}
+                MDLabel:
+                    size_hint_y: None
+                    pos_hint: {"x":.05, "top":.8}
+                    id: route_label
+                    text: " Departure time:"
 
             Screen:
                 name: 'profile'

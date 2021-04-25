@@ -61,8 +61,8 @@ class MyApp(MDApp):
         start_id = navigator.getPointIdByName(start_name)
         end_id = navigator.getPointIdByName(end_name)
         CURR_PATH, CURR_PATH_INFO = navigator.build_path(start_id, end_id)
-        self.root.ids['route_label'].text = CURR_PATH_INFO
-        self.paint_route(CURR_PATH)
+        self.root.ids['route_label'].text = navigator.path_info_to_str(CURR_PATH_INFO, len(CURR_PATH))
+        # self.paint_route(CURR_PATH)
 
     def build_path_by_ticket(self):
         navigator = Navigator().build_path()
@@ -70,7 +70,7 @@ class MyApp(MDApp):
         default_end_id = 10 # out 105-106
         CURR_PATH, CURR_PATH_INFO = navigator.build_path(default_start_id, default_end_id)
         self.root.ids['route_label'].text = CURR_PATH_INFO
-        self.paint_route(CURR_PATH)
+        # self.paint_route(CURR_PATH)
 
     def call_help(self):
         layout = GridLayout(cols=1, padding=10)

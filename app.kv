@@ -59,6 +59,11 @@ Screen:
                         on_release: app.minus()
                         size_hint: 0.1, 0.1
                         pos_hint: {"x":.9, "y":.4}
+                    MDRectangleFlatButton:
+                        text: "reset"
+                        on_release: app.map_reset()
+                        size_hint: 0.1, 0.1
+                        pos_hint: {"x":.9, "y":.3}
 
             Screen:
                 name: "route"

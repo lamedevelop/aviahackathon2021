@@ -14,3 +14,7 @@ lint:
 
 test:
 	pytest -s
+
+docker-run:
+	docker build -t ar_server:latest .
+	docker run --rm -it -p 4000:4000 -d ar_server:latest

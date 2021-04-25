@@ -28,10 +28,15 @@ Screen:
                         size_hint: None, None
                         pos_hint: {"x": 0.45, "y": 0.5}
                         opacity: .7
-                        Image:
-                            id: cool_img
-                            source: "B-3.jpg"
-                            size_hint: None, None
+                        Scatter:
+                            Image:
+                                id: cool_img
+                                source: "B-3.jpg"
+                                size_hint: None, None
+                            Image:
+                                id: cool_img
+                                source: "AR/static/img/1.png"
+                                size_hint: None, None
                     MDRectangleFlatButton:
                         text: "+"
                         on_release: app.plus()

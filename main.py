@@ -77,10 +77,6 @@ class MyApp(MDApp):
         self.root.ids['scatter'].center = 35, -15
         self.root.ids['scatter'].rotation = 0
 
-    def run_ticket_scanner(self):
-        self.root.ids['user_gate'].text += ' my cool text'
-        self.root.ids['user_departure'].text += ' my cool text'
-
     def build_path(self):
         navigator = Navigator()
         start_name = self.root.ids['start_point'].text
@@ -128,6 +124,9 @@ class MyApp(MDApp):
                     widget.canvas.children[1]=Color(0,0,1,0.8)
 
     def run_ticket_scanner(self):
+        self.root.ids['user_gate'].text += ' my cool text'
+        self.root.ids['user_departure'].text += ' my cool text'
+
         # 1
         camera = cv2.VideoCapture(0)
         ret, frame = camera.read()
@@ -142,6 +141,8 @@ class MyApp(MDApp):
         # 3
         camera.release()
         cv2.destroyAllWindows()
+
+        print()
 
     def read_barcodes(self, frame):
         barcodes = pyzbar.decode(frame)

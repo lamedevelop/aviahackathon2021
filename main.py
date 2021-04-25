@@ -34,6 +34,11 @@ class MyApp(MDApp):
         self.root.ids['cool_img'].pos[0] += 50
         self.root.ids['cool_img'].pos[1] += 50
 
+    def map_reset(self):
+        self.root.ids['scatter'].scale = self.root.width/160
+        self.root.ids['scatter'].center = 35, -15
+        self.root.ids['scatter'].rotation = 0
+
     def run_ticket_scanner(self, screen_manager: ScreenManager):
         screen_manager.transition.direction = 'left'
         screen_manager.current = 'qr'

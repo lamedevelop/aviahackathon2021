@@ -24,7 +24,7 @@ class DummyHandler:
 	 "stops": "",
 	 "days": "ежедневно с 30.04 по 27.09",
 	 "terminal": "B",
-	 "platform": "136"
+	 "platform": "105"
 },
 {
 	 "except_days": "",
@@ -43,7 +43,7 @@ class DummyHandler:
 	 "stops": "",
 	 "days": "ежедневно с 28.04 по 25.08",
 	 "terminal": "B",
-	 "platform": "129"
+	 "platform": "106"
 }
 ]
 ''')

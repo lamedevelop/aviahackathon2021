@@ -67,8 +67,8 @@ Screen:
 
             Screen:
                 name: "route"
-                orientation: 'vertical'
-                FloatLayout:
+                BoxLayout:
+                    orientation: 'vertical'
                     MDToolbar:
                         id: toolbar
                         md_bg_color: 1, 1, 1, 0
@@ -78,6 +78,8 @@ Screen:
                         height: dp(70)
                         title: 'SVO Route'
                         pos_hint: {"x":0, "top":1}
+                    Label:
+                        id: route_label
 
             Screen:
                 name: 'profile'

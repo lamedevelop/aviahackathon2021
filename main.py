@@ -3,6 +3,9 @@ from kivy.uix.screenmanager import ScreenManager
 from kivymd.app import MDApp
 
 
+from kivy.core.window import Window
+Window.size = (300, 100)
+
 class MyApp(MDApp):
 
     def build(self):

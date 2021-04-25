@@ -36,5 +36,8 @@ class MyApp(MDApp):
     def run_ticket_scanner(self):
         pass
 
+    def build_path(self):
+        pass
+
 
 MyApp().run()

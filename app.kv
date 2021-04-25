@@ -133,7 +133,7 @@ Screen:
                                 orientation: 'horizontal'
                                 Button:
                                     text: "Build path"
-                                    on_release: app.build_path_by_ticket()
+                                    on_release: app.build_path_by_ticket(screen_manager)
 
                         MDLabel:
                             text: "Scan your ticket to get info about your gate and departure time:"

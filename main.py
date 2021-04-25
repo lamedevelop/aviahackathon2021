@@ -14,6 +14,7 @@ from kivymd.app import MDApp
 from kivy.uix.gridlayout import GridLayout
 from kivy.graphics import Color, Rectangle
 from pyzbar import pyzbar
+from kivy_garden.zbarcam import ZBarCam
 
 from pathfinding.navigator import Navigator
 
@@ -87,13 +88,15 @@ class MyApp(MDApp):
         self.root.ids['route_label'].text = navigator.path_info_to_str(CURR_PATH_INFO, len(CURR_PATH))
         self.paint_route(CURR_PATH)
 
-    def build_path_by_ticket(self):
+    def build_path_by_ticket(self, screen_manager: ScreenManager):
         navigator = Navigator()
         default_start_id = 0
         default_end_id = 10 # out 105-106
         CURR_PATH, CURR_PATH_INFO = navigator.build_path(default_start_id, default_end_id)
         self.root.ids['route_label'].text = navigator.path_info_to_str(CURR_PATH_INFO, len(CURR_PATH))
         self.paint_route(CURR_PATH)
+        screen_manager.transition.direction = 'right'
+        screen_manager.current = 'map'
 
     def call_help(self):
         layout = GridLayout(cols=1, padding=10)
@@ -124,41 +127,28 @@ class MyApp(MDApp):
                     widget.canvas.children[1]=Color(0,0,1,0.8)
 
     def run_ticket_scanner(self):
-        self.root.ids['user_gate'].text += ' my cool text'
-        self.root.ids['user_departure'].text += ' my cool text'
-
-        # 1
         camera = cv2.VideoCapture(0)
         ret, frame = camera.read()
-        # 2
         while ret:
             ret, frame = camera.read()
             frame = self.read_barcodes(frame)
             cv2.imshow('Barcode/QR code reader', frame)
             if cv2.waitKey(1) == 27:
                 ret = False
-
-        # 3
         camera.release()
         cv2.destroyAllWindows()
-
-        print()
 
     def read_barcodes(self, frame):
         barcodes = pyzbar.decode(frame)
         for barcode in barcodes:
             x, y, w, h = barcode.rect
-            # 1
             barcode_info = barcode.data.decode('utf-8')
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-
-            # 2
             font = cv2.FONT_HERSHEY_DUPLEX
             cv2.putText(frame, barcode_info, (x + 6, y - 6), font, 2.0, (255, 255, 255), 1)
-            # 3
-            print(barcode_info)
-            # with open("barcode_result.txt", mode='w') as file:
-            #     file.write("Recognized Barcode:" + barcode_info)
+            barcode_info = barcode_info.split()
+            self.root.ids['user_gate'].text = 'Gate: ' + barcode_info[0]
+            self.root.ids['user_departure'].text = 'Departure: ' + barcode_info[1]
         return frame
 
 

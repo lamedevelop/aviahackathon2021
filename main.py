@@ -1,10 +1,7 @@
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.app import MDApp
-import cv2
-from pyzbar import pyzbar
-from kivy_garden.zbarcam import ZBarCam
-
+import qr_code_reader
 
 class MyApp(MDApp):
 
@@ -47,48 +44,9 @@ class MyApp(MDApp):
         self.root.ids['scatter'].rotation = 0
 
     def run_ticket_scanner(self):
-        camera = cv2.VideoCapture(0)
-        if not camera.isOpened():
-            print('Камера недоступна')
-            return 0
+        qr_code_reader.main(self)
 
-        ret, frame = camera.read()
-        # 2
-        while ret:
-            ret, frame = camera.read()
-            barcode_info = self.read_barcodes(frame)
-            cv2.imshow('Barcode/QR code reader', frame)
 
-            if cv2.waitKey(1):
-                break
-
-            if len(barcode_info) > 6:
-                ret = 0
-        # 3
-        camera.release()
-        cv2.destroyAllWindows()
-
-    def read_barcodes(self, frame):
-        barcode = pyzbar.decode(frame)
-        # x, y, w, h = barcode.rect
-        # 1
-        print(barcode)
-        if len(barcode):
-            barcode_info = barcode[0].data.decode('utf-8')
-            self.root.ids['user_gate'].text = barcode_info
-            return barcode_info
-        #cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-
-        # 2
-        # font = cv2.FONT_HERSHEY_DUPLEX
-        # cv2.putText(frame, barcode_info, (x + 6, y - 6), font, 2.0, (255, 255, 255), 1)
-
-        # self.root.ids['user_gate'].text = barcode_info
-
-        # 3
-        # with open("barcode_result.txt", mode='w') as file:
-        #     file.write("Recognized Barcode:" + barcode_info)
-        return 0
 
 
 MyApp().run()

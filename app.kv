@@ -41,10 +41,14 @@ Screen:
                         size_hint: None, None
                         pos_hint: {"x": 0.45, "y": 0.5}
                         opacity: .7
-                        Image:
-                            id: cool_img
-                            source: "B-3.jpg"
-                            size_hint: None, None
+                        Scatter:
+                            id: scatter
+                            scale: root.width/160
+                            center: 35, -15
+                            Image:
+                                id: cool_img
+                                source: "B-3.jpg"
+                                size_hint: None, None
                     MDRectangleFlatButton:
                         text: "+"
                         on_release: app.plus()

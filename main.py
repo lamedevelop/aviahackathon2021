@@ -1,4 +1,6 @@
 import time
+
+import cv2
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 
@@ -11,6 +13,7 @@ from kivy.uix.widget import Widget
 from kivymd.app import MDApp
 from kivy.uix.gridlayout import GridLayout
 from kivy.graphics import Color, Rectangle
+from pyzbar import pyzbar
 
 from pathfinding.navigator import Navigator
 
@@ -123,6 +126,39 @@ class MyApp(MDApp):
             for x, widget in enumerate(array_of_widgets):
                 if (x,y,) in coords_list:
                     widget.canvas.children[1]=Color(0,0,1,0.8)
+
+    def run_ticket_scanner(self):
+        # 1
+        camera = cv2.VideoCapture(0)
+        ret, frame = camera.read()
+        # 2
+        while ret:
+            ret, frame = camera.read()
+            frame = self.read_barcodes(frame)
+            cv2.imshow('Barcode/QR code reader', frame)
+            if cv2.waitKey(1) == 27:
+                ret = False
+
+        # 3
+        camera.release()
+        cv2.destroyAllWindows()
+
+    def read_barcodes(self, frame):
+        barcodes = pyzbar.decode(frame)
+        for barcode in barcodes:
+            x, y, w, h = barcode.rect
+            # 1
+            barcode_info = barcode.data.decode('utf-8')
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+            # 2
+            font = cv2.FONT_HERSHEY_DUPLEX
+            cv2.putText(frame, barcode_info, (x + 6, y - 6), font, 2.0, (255, 255, 255), 1)
+            # 3
+            print(barcode_info)
+            # with open("barcode_result.txt", mode='w') as file:
+            #     file.write("Recognized Barcode:" + barcode_info)
+        return frame
 
 
 MyApp().run()

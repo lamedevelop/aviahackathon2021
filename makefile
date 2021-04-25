@@ -4,8 +4,9 @@ PROJECT_NAMESPACE ?= Oleggr
 REGISTRY_IMAGE ?= $(PROJECT_NAMESPACE)/$(PROJECT_NAME)
 
 all:
-	@echo "make lint	- Check code with flake8"
-	@echo "make test	- Run tests"
+	@echo "make lint		- Check code with flake8"
+	@echo "make test		- Run tests"
+	@echo "make docker 		- Run AR microservice"
 	@exit 0
 
 lint:
@@ -15,6 +16,6 @@ lint:
 test:
 	pytest -s
 
-docker-run:
+docker:
 	docker build -t ar_server:latest .
 	docker run --rm -it -p 4000:4000 -d ar_server:latest

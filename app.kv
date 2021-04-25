@@ -109,9 +109,21 @@ Screen:
                             text: "Scan your ticket to get info about your gate and departure time:"
                         Button:
                             text: "Ticket Scanner"
-                            on_release: app.run_ticket_scanner()
+                            on_release: app.run_ticket_scanner(screen_manager)
                         MDLabel:
                             text: "Augment reality guide will entertain your flight waiting and will help to find interesting places easily:"
                         Button:
                             text: 'AR Guide'
                             on_release: webbrowser.open_new('https://192.168.1.185:4000')
+
+            Screen:
+                name: "qr"
+                orientation: 'vertical'
+                BoxLayout:
+                    orientation: 'vertical'
+                    ZBarCam:
+                        id: zbarcam
+                    Label:
+                        size_hint: None, None
+                        size: self.texture_size[0], 50
+                        text: ', '.join([str(symbol.data) for symbol in zbarcam.symbols])

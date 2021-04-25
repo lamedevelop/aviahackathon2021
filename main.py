@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.app import MDApp
+from kivy_garden.zbarcam import ZBarCam
 
 
 class MyApp(MDApp):
@@ -33,9 +34,11 @@ class MyApp(MDApp):
         self.root.ids['cool_img'].pos[0] += 50
         self.root.ids['cool_img'].pos[1] += 50
 
-    def run_ticket_scanner(self):
-        self.root.ids['user_gate'].text += ' my cool text'
-        self.root.ids['user_departure'].text += ' my cool text'
+    def run_ticket_scanner(self, screen_manager: ScreenManager):
+        screen_manager.transition.direction = 'left'
+        screen_manager.current = 'qr'
+        # self.root.ids['user_gate'].text += ' my cool text'
+        # self.root.ids['user_departure'].text += ' my cool text'
 
     def build_path(self):
         pass

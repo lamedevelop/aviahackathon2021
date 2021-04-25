@@ -38,7 +38,6 @@ class MyApp(MDApp):
                 widget_elem = Widget()
                 with widget_elem.canvas:
                     Color(1,1,1,0)
-                    # Color(random.random(), random.random(), random.random(), 0.2)
                     widget_elem.pos[0] += i*COLS/33.2/COEFF + 10.5
                     widget_elem.pos[1] += j*ROWS/48.7/COEFF
                     Rectangle(pos=widget_elem.pos,
@@ -49,6 +48,7 @@ class MyApp(MDApp):
             self.coords_list.append(row_widgets)
         widget.add_widget(layout)
         self.coords_list = self.coords_list[::-1]
+
         return screen
 
     def go_to_map(self, screen_manager: ScreenManager):

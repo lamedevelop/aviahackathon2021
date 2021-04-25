@@ -92,8 +92,16 @@ Screen:
                         pos_hint: {"x":0, "y":1}
                         BoxLayout:
                             orientation: 'horizontal'
-                            MDLabel:
-                                text: "Gate \nDeparture time: "
+                            BoxLayout:
+                                orientation: 'vertical'
+                                MDLabel:
+                                    id: user_gate
+                                    bold: True
+                                    text: "Gate:"
+                                MDLabel:
+                                    id: user_departure
+                                    bold: True
+                                    text: "Departure time:"
                             Button:
                                 text: "Build path"
                                 on_release: app.build_path()

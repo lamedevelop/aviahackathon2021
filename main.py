@@ -3,7 +3,6 @@ from kivy.uix.screenmanager import ScreenManager
 from kivymd.app import MDApp
 
 
-
 class MyApp(MDApp):
 
     def build(self):
@@ -35,7 +34,8 @@ class MyApp(MDApp):
         self.root.ids['cool_img'].pos[1] += 50
 
     def run_ticket_scanner(self):
-        pass
+        self.root.ids['user_gate'].text += ' my cool text'
+        self.root.ids['user_departure'].text += ' my cool text'
 
     def build_path(self):
         pass

@@ -1,3 +1,5 @@
 pytest
 kivy
 kivymd
+flake8
+zbarcam

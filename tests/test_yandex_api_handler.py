@@ -1,6 +1,6 @@
 import pytest
 
-from yandex_api_handler.api_handler import HandlerFactory
+from api_wrapper.handler_factory import HandlerFactory
 
 
 @pytest.fixture

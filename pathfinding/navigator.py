@@ -36,7 +36,7 @@ class Navigator:
         i = 0
 
         for point in self.grid.destination_points:
-            if point['info'] == my_point['info']
+            if point['info'] == my_point['info']:
                 return i
             else:
                 i += 1

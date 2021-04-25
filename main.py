@@ -64,16 +64,10 @@ class MyApp(MDApp):
         screen_manager.current = 'profile'
 
     def plus(self):
-        self.root.ids['cool_img'].size[0] += 100
-        self.root.ids['cool_img'].size[1] += 100
-        self.root.ids['cool_img'].pos[0] -= 50
-        self.root.ids['cool_img'].pos[1] -= 50
+        self.root.ids['scatter'].scale += 1
 
     def minus(self):
-        self.root.ids['cool_img'].size[0] -= 100
-        self.root.ids['cool_img'].size[1] -= 100
-        self.root.ids['cool_img'].pos[0] += 50
-        self.root.ids['cool_img'].pos[1] += 50
+        self.root.ids['scatter'].scale -= 1
 
     def map_reset(self):
         self.root.ids['scatter'].scale = self.root.width/160

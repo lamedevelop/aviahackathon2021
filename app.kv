@@ -37,6 +37,22 @@ Screen:
                         title: 'SVO Guide'
                         right_action_items: [['menu', lambda x: app.go_to_profile(screen_manager)]]
                         pos_hint: {"x":0, "top":1}
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint: .2, 0.12
+                        pos_hint: {"x":0, "y":.6}
+                        height: dp(70)
+                        TextInput:
+                            id: start_point
+                            text: "start"
+                        TextInput:
+                            id: end_point
+                            text: "end"
+                        Button:
+                            text: "Run"
+                            on_release: app.build_path()
+
                     RelativeLayout:
                         size_hint: None, None
                         pos_hint: {"x": 0.45, "y": 0.5}
@@ -114,7 +130,7 @@ Screen:
                                 orientation: 'horizontal'
                                 Button:
                                     text: "Build path"
-                                    on_release: app.build_path()
+                                    on_release: app.build_path_by_ticket()
 
                         MDLabel:
                             text: "Scan your ticket to get info about your gate and departure time:"

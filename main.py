@@ -8,6 +8,12 @@ from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.app import MDApp
 
+from pathfinding.navigator import Navigator
+
+
+CURR_PATH = []
+CURR_PATH_INFO = ''
+
 
 class MyApp(MDApp):
 
@@ -49,7 +55,22 @@ class MyApp(MDApp):
         self.root.ids['user_departure'].text += ' my cool text'
 
     def build_path(self):
-        pass
+        navigator = Navigator()
+        start_name = self.root.ids['start_point'].text
+        end_name = self.root.ids['end_point'].text
+        start_id = navigator.getPointIdByName(start_name)
+        end_id = navigator.getPointIdByName(end_name)
+        CURR_PATH, CURR_PATH_INFO = navigator.build_path(start_id, end_id)
+        self.root.ids['route_label'].text = CURR_PATH_INFO
+        self.paint_route(CURR_PATH)
+
+    def build_path_by_ticket(self):
+        navigator = Navigator().build_path()
+        default_start_id = 0
+        default_end_id = 10 # out 105-106
+        CURR_PATH, CURR_PATH_INFO = navigator.build_path(default_start_id, default_end_id)
+        self.root.ids['route_label'].text = CURR_PATH_INFO
+        self.paint_route(CURR_PATH)
 
     def call_help(self):
         layout = GridLayout(cols=1, padding=10)

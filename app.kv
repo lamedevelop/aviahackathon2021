@@ -94,11 +94,18 @@ Screen:
                     height: dp(70)
                     title: 'SVO Route'
                     pos_hint: {"x":0, "top":1}
-                MDLabel:
-                    size_hint_y: None
-                    pos_hint: {"x":.05, "top":.8}
-                    id: route_label
-                    text: " Departure time:"
+
+                ScrollView:
+                    pos_hint: {"x":.05, "top":.9}
+
+                    do_scroll_x: False
+                    do_scroll_y: True
+
+                    MDLabel:
+                        size_hint_y: .3
+
+                        id: route_label
+                        text: " Departure time:"
 
             Screen:
                 name: 'profile'

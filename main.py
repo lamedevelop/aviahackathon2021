@@ -18,13 +18,11 @@ from kivy_garden.zbarcam import ZBarCam
 
 from pathfinding.navigator import Navigator
 
-
 CURR_PATH = []
 CURR_PATH_INFO = ''
 
 
 class MyApp(MDApp):
-
     coords_list = []
 
     def build(self):
@@ -37,16 +35,16 @@ class MyApp(MDApp):
         widget = screen.ids['coords']
 
         for j in range(ROWS):
-            row_widgets=[]
+            row_widgets = []
             for i in range(COLS):
                 widget_elem = Widget()
                 with widget_elem.canvas:
-                    Color(1,1,1,0)
-                    widget_elem.pos[0] += i*COLS/33.2/COEFF + 10.5
-                    widget_elem.pos[1] += j*ROWS/48.7/COEFF
+                    Color(1, 1, 1, 0)
+                    widget_elem.pos[0] += i * COLS / 33.2 / COEFF + 10.5
+                    widget_elem.pos[1] += j * ROWS / 48.7 / COEFF
                     Rectangle(pos=widget_elem.pos,
-                              size=(widget_elem.width/COLS/COEFF,
-                                    widget_elem.height/COLS/COEFF))
+                              size=(widget_elem.width / COLS / COEFF,
+                                    widget_elem.height / COLS / COEFF))
                 row_widgets.append(widget_elem)
                 layout.add_widget(widget_elem)
             self.coords_list.append(row_widgets)
@@ -74,7 +72,7 @@ class MyApp(MDApp):
         self.root.ids['scatter'].scale -= 1
 
     def map_reset(self):
-        self.root.ids['scatter'].scale = self.root.width/160
+        self.root.ids['scatter'].scale = self.root.width / 160
         self.root.ids['scatter'].center = 35, -15
         self.root.ids['scatter'].rotation = 0
 
@@ -91,7 +89,7 @@ class MyApp(MDApp):
     def build_path_by_ticket(self, screen_manager: ScreenManager):
         navigator = Navigator()
         default_start_id = 0
-        default_end_id = 10 # out 105-106
+        default_end_id = 10  # out 105-106
         CURR_PATH, CURR_PATH_INFO = navigator.build_path(default_start_id, default_end_id)
         self.root.ids['route_label'].text = navigator.path_info_to_str(CURR_PATH_INFO, len(CURR_PATH))
         self.paint_route(CURR_PATH)
@@ -109,22 +107,21 @@ class MyApp(MDApp):
 
         popup = Popup(title='Help is on the way',
                       content=layout,
-                      size_hint=(None, None), size=(self.root.width/1.5, self.root.height/3))
+                      size_hint=(None, None), size=(self.root.width / 1.5, self.root.height / 3))
         popup.open()
         closeButton.bind(on_press=popup.dismiss)
 
     def _clean_paint_route(self):
         for array_of_widgets in self.coords_list:
             for widget in array_of_widgets:
-                    with widget.canvas:
-                        Color(1,1,1,0)
+                widget.canvas.children[1] = Color(1, 1, 1, 0)
 
     def paint_route(self, coords_list):
         self._clean_paint_route()
         for y, array_of_widgets in enumerate(self.coords_list):
             for x, widget in enumerate(array_of_widgets):
-                if (x,y,) in coords_list:
-                    widget.canvas.children[1]=Color(0,0,1,0.8)
+                if (x, y,) in coords_list:
+                    widget.canvas.children[1] = Color(0, 0, 1, 0.8)
 
     def run_ticket_scanner(self):
         camera = cv2.VideoCapture(0)

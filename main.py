@@ -16,7 +16,7 @@ from kivy.graphics import Color, Rectangle
 from pyzbar import pyzbar
 from kivy_garden.zbarcam import ZBarCam
 
-from pathfinding.navigator import Navigator
+from path_find.navigator import Navigator
 
 CURR_PATH = []
 CURR_PATH_INFO = ''

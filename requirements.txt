@@ -3,3 +3,4 @@ kivy
 kivymd
 flake8
 zbarcam
+pathfinding

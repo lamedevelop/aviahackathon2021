@@ -4,12 +4,28 @@ Airport navigation system
 ### Run
 Run the app:
 ```bash
-
 python3 -m pip install -r requirements.txt
 python3 main.py
 ```
 
-Android build: ```Coming soon```
+
+AR microservice build:
+
+Step 1: Build image
+```bash
+docker build -t ar-app .
+```
+
+Step 2: Run image
+```bash
+docker run -it -p 8081:4000 ar-app:latest
+```
+
+After this microservice will be available by address: 
+```bash
+https://your_server_ip:8081 
+```
+
 
 ### Demo
 Main map screen with generated route:

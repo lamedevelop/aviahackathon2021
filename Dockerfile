@@ -1,4 +1,4 @@
-FROM python:3.7-buster as builder
+FROM python:3.7-slim as builder
 
 COPY AR/requirements.txt /tmp
 
@@ -7,7 +7,7 @@ RUN \
     /tmp/venv/bin/pip3 install --upgrade pip && \
     /tmp/venv/bin/pip3 install -r tmp/requirements.txt
 
-FROM python:3.7-buster
+FROM python:3.7-slim
 
 COPY AR/static /app/static
 COPY AR/web_ar.py /app

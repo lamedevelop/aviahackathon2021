@@ -1,2 +1,2 @@
-flask
-cryptography
+flask==2.0.1
+cryptography==3.4.7

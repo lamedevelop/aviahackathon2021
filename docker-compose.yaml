@@ -1,0 +1,8 @@
+version: "3.9"
+
+services: 
+  web-ar:
+    container_name: web-ar
+    build: .
+    ports: 
+      - 8081:4000

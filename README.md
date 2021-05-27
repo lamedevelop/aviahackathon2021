@@ -11,14 +11,9 @@ python3 main.py
 
 AR microservice build:
 
-Step 1: Build image
+Build and Run:
 ```bash
-docker build -t ar-app .
-```
-
-Step 2: Run image
-```bash
-docker run -it -p 8081:4000 ar-app:latest
+docker-compose up --build -d
 ```
 
 After this microservice will be available by address: 

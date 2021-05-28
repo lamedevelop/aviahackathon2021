@@ -5,4 +5,4 @@ services:
     container_name: web-ar
     build: .
     ports: 
-      - 8081:4000
+      - 8081:80
